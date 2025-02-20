@@ -1,6 +1,6 @@
 import React from 'react';
 
-function State_exam(props) {
+function State_exam01(props) {
 
     let count = 0;
 
@@ -28,4 +28,4 @@ function State_exam(props) {
     );
 }
 
-export default State_exam;
+export default State_exam01;
