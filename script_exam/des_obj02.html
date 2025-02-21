@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    const city = {
+        name: 'seoul',
+        populate: '2000만',
+        des: '대한민국 수도',
+        country: 'korea'
+    }
+
+    const{name} = city;
+    console.log(name);
+
+    //구조분해 할당을 이용한 객체 복사 및 수정
+    const updated = {
+        ...city,
+        populate: '2500만'
+    }
+</script>
+</html>

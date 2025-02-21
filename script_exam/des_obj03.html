@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    const stList = [
+        {
+            id: 1,
+            name: '홍길동',
+            score: 98
+        },
+        {
+            id: 2,
+            name: '김철수',
+            score: 88
+        },
+        {
+            id: 2,
+            name: '김영미',
+            score: 91
+        }
+    ]
+
+    const updated = 
+        stList.map((std) => std.id === 2 ? {...std, score: 96} : std);
+
+    console.log(updated)
+</script>
+</html>
