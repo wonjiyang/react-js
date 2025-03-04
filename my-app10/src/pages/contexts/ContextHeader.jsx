@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { ThemeContext } from './ThemeContext';
 
-function Header({isDark}) {
+function ContextHeader() {
+
+    const {isDark} = useContext(ThemeContext);
 
     const headerCss = {
         backgroundColor: isDark ? 'black' : 'lightgray',
@@ -16,4 +19,4 @@ function Header({isDark}) {
     );
 }
 
-export default Header;
+export default ContextHeader;

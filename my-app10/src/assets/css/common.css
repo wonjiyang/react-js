@@ -1,0 +1,43 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    font-family: sans-serif;
+}
+
+.page {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.content {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+}
+
+.footer {
+    width: 100vw;
+    height: 80px;
+    display: flex;
+    border-top: 2px solid gray;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.button {
+    padding: 10px;
+    margin: 0 15px;
+}
+
+.header {
+    width: 100vw;
+    height: 80px;
+    border-bottom: 2px solid gray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
