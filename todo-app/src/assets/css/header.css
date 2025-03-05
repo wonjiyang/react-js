@@ -1,0 +1,12 @@
+.header {
+    margin-top: 40px;
+    text-align: center;
+}
+
+.header h3 {
+    color: skyblue;
+}
+
+.header h2 {
+    color: orangered;
+}
