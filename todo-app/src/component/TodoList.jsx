@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import TodoItem from './TodoItem';
+import { TodoContext } from './TodoContext';
 
 const ListSection = styled.section`
     display: flex;
     flex-direction: column;
     gap: 20px;
-
 `
 
 const Search = styled.div`
@@ -27,6 +27,32 @@ const TodoListBox = styled.section`
 `
 
 function TodoList(props) {
+
+    const {todoList} = useContext(TodoContext);
+    const [searchList, setSearchList] = useState(todoList);
+    const [searchText, setSearchText] = useState('');
+
+    const searchSchedule = useCallback(() => {
+        console.log(searchText)
+        const filter = todoList.filter((todo) => todo.schedule.includes(searchText));
+        setSearchList(filter)
+    }, [searchText]);
+
+    const enterKeyEvent = useCallback((e) => {
+        if(e.keyCode === 13) {
+            searchSchedule();
+        }
+    },[searchText]);
+
+    //todoList 갱신할 때마다 searchList도 갱신
+    useEffect(() => {
+        setSearchList(todoList);
+    },[todoList]);
+
+    useEffect(() => {
+        console.log('test');
+    }, [searchSchedule]);
+
     return (
         <>
             <ListSection>
@@ -36,15 +62,28 @@ function TodoList(props) {
                 <Search>
                     <div className="row">
                         <div className="col-10">
-                            <SearchInput type="text" className='form-control' placeholder='입력하세요.'/>
+                            <SearchInput 
+                                type="text" 
+                                className='form-control' 
+                                value={searchText} 
+                                onChange={(e) => setSearchText(e.target.value)} 
+                                onKeyDown={enterKeyEvent}
+                                placeholder='검색어를 입력하세요.'/>
                         </div>
                         <div className='col-2' style={{textAlign: 'right'}}>
-                            <button className='btn btn-success'>검색</button>
+                            <button 
+                                className='btn btn-success' 
+                                onClick={searchSchedule}>검색
+                            </button>
                         </div>
                     </div>
                 </Search>
                 <TodoListBox>
-                    <TodoItem/>
+                    {
+                        searchList?.map(todo => (
+                            <TodoItem key={todo.id} todo={todo}/>
+                        ))
+                    }
                 </TodoListBox>
             </ListSection>
         </>

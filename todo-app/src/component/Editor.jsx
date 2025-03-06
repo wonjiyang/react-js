@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
+import { TodoContext } from './TodoContext';
 
 const EditorSection = styled.section`
     display: flex;
@@ -13,14 +14,24 @@ const ItemBox = styled.div`
 `
 
 function Editor(props) {
+
+    //추가 이벤트
+    const {addSchedule} = useContext(TodoContext);
+    const [schedule, setSchedule] = useState('');
+
+    const add = (e) => {
+        e.preventDefault();
+        addSchedule(schedule);
+    }
+
     return (
         <>
             <EditorSection className='mt-4'>
                 <ItemBox scale = {5}>
-                    <input type="text" className='form-control'/>
+                    <input type="text" className='form-control' value={schedule} onChange={(e) => setSchedule(e.target.value)}/>
                 </ItemBox>
                 <ItemBox scale = {1}>
-                    <button type='button' className='btn btn-primary'>추가</button>
+                    <button type='button' className='btn btn-primary' onClick={add}>추가</button>
                 </ItemBox>
             </EditorSection>
         </>

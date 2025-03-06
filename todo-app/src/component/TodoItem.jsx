@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
+import { TodoContext } from './TodoContext';
 
 const ItemSection = styled.section`
     display: flex;
@@ -10,24 +11,30 @@ const ItemSection = styled.section`
 
 const TodoBox = styled.div`
     flex: ${p => p.scale || 1};
-    text-align: ${p => p.align || 'left'};
+    text-align: ${p => p.$align || 'left'};
 `
 
-function TodoItem(props) {
+function TodoItem({todo}) {
+
+    const {updateSchedule, deleteSchedule} = useContext(TodoContext);
+
     return (
         <>
             <ItemSection>
                 <TodoBox scale={0.5}>
-                    <input type="checkbox"></input>
+                    <input type="checkbox" checked={todo.isDone} onChange={() => updateSchedule(todo.id)}/>
                 </TodoBox>
                 <TodoBox scale={4.5}>
-                    <span>1</span>
+                    <span style={{
+                        textDecoration: todo.isDone? 'line-through' : 'none',
+                        color: todo.isDone? 'gray' : 'black'
+                    }}>{todo.schedule}</span>
                 </TodoBox>
-                <div>
-                    {new Date().toLocaleDateString()}
-                </div>
-                <TodoBox scale={1} align={'right'}>
-                    <button className='btn btn-secondary'>삭제</button>
+                <TodoBox scale={1}>
+                    {new Date(todo.date).toLocaleDateString()}
+                </TodoBox>
+                <TodoBox scale={1} $align={'right'}>
+                    <button className='btn btn-secondary' onClick={() => deleteSchedule(todo.id)}>삭제</button>
                 </TodoBox>
             </ItemSection>
         </>
