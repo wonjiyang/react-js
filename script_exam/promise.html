@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    let count = 10;
+    function getData(number) {
+        //서버에서 데이터받는 비동기
+        //fending 상태
+        const promise = new Promise((resolve, reject) => {
+            count = count + number;
+            resolve(count);
+        });
+        return promise;
+    }
+    getData(10).then((result) => {
+        return getData(result);
+    }).then();
+</script>
+</html>
